@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 import os
 from glob import glob
-package_name = 'mkpkg'
+package_name = 'mypkg'
 
 setup(
     name=package_name,
@@ -26,8 +26,8 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'talker = mkpkg.talker:main',
-            'listener = mkpkg.listener:main',
+            'talker = mypkg.talker:main',
+            'listener = mypkg.listener:main',
         ],
     },
 )
