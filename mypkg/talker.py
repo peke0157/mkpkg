@@ -6,14 +6,14 @@ class Talker():
     def __init__(self, nh):
         self.pub = nh.create_publisher(Int16, "countup", 10)
         self.n = 0
-        nh.create_timer(0.5, cb)
+        nh.create_timer(0.5, self.cb)
 
 
-def cb():
-    msg = Int16()
-    msg.data = talker.n
-    talker.pub.publish(msg)
-    talker.n += 1
+    def cb(self):
+        msg = Int16()
+        msg.data = self.n
+        self.pub.publish(msg)
+        self.n += 1
 
 rclpy.init()
 node = Node("talker")
