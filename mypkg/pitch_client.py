@@ -19,7 +19,7 @@ class PitchClient(Node):
     def send_request(self):
         req = Trigger.Request()
         future = self.cli.call_async(req)
-        future.add_done_callback(seld.response_callback)
+        future.add_done_callback(self.response_callback)
 
     def response_callback(self, future):
         try:
