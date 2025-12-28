@@ -17,5 +17,5 @@ echo "=== LOG END ==="
 
 
 cat /tmp/mypkg.log |
-grep 'Listen: 10'
+grep 'Pitch_Count: 10'
 

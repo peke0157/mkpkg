@@ -26,7 +26,7 @@ class PitchClient(Node):
             response = future.result
             self.get_logger().info(f'Server Response: Success={response.success}, Message="{response.message}"')
         except Exception as e:
-            self.get_logger().error('Server call failed: {e}')
+            self.get_logger().error(f'Server call failed: {e}')
 
 
 def main():
