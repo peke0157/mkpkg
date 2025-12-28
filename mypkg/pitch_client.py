@@ -31,7 +31,7 @@ class PitchClient(Node):
 
 def main():
     rclpy.init()
-    node = PitchClient
+    node = PitchClient()
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
