@@ -1,9 +1,12 @@
+# SPDX-FileCopyrightText: 2025 Hiroto Miura
+# SPDX-License-Identifier: BSD-3-Clause
+
 import rclpy 
 from rclpy .node import Node
 from std_srvs.srv import Trigger
 
 class PitchClient(Node):
-    def __init__('pitch_client'):
+    def __init__(self):
         super().__init__('pitch_client')
         self.cli = self.create_client(Trigger, '/count_pitch')
 

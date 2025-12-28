@@ -1,9 +1,3 @@
-import rclpy
-from rclpy.node import Node
-from std_msgs.msg import Int16
-
-class Talker():
-    def __init__(self, nh):
 # SPDX-FileCopyrightText: 2025 Hiroto Miura
 # SPDX-License-Identifier: BSD-3-Clause
 
@@ -47,9 +41,7 @@ class PitchServer(Node):
             response.success = True
             response.message = f"OK"
 
-        return response        self.pub = nh.create_publisher(Int16, "countup", 10)
-        self.n = 0
-        nh.create_timer(0.5, self.cb)
+        return response        
 
 
     def main(args=None):
