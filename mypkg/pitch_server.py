@@ -30,7 +30,7 @@ class PitchServer(Node):
         self.get_logger().info(f'Pitch_Count: {self.current_count}/{limit}')
 
         if self.current_count > limit:
-            msg = String
+            msg = String()
             msg.data = f"Warning: pitch_count_limit exceed! ({self.current_count}/{limit})"
             self.pub.publish(msg)
 
