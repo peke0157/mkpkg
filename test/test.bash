@@ -8,7 +8,7 @@ cd $dir/ros2_ws
 colcon build
 source $dir/.bashrc
 export PYTHONUNBUFFERED=1
-　
+
 timeout 15 ros2 launch mypkg pitchserver_client.launch.py > /tmp/mypkg.log 2>&1
 
 echo "=== LOG START ==="
