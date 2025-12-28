@@ -23,7 +23,7 @@ class PitchClient(Node):
 
     def response_callback(self, future):
         try:
-            response = future.result
+            response = future.result()
             self.get_logger().info(f'Server Response: Success={response.success}, Message="{response.message}"')
         except Exception as e:
             self.get_logger().error(f'Server call failed: {e}')
