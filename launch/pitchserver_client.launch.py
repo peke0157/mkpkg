@@ -6,15 +6,16 @@ import launch_ros.actions
 
 def generate_launch_description():
 
-    talker = launch_ros.actions.Node(
+    server = launch_ros.actions.Node(
             package='mypkg',
-            executable='talker',
+            executable='pitch_server',
+            output='screen',
             )
-    listener = launch_ros.actions.Node(
+    client = launch_ros.actions.Node(
             package='mypkg',
-            executable='listener',
+            executable='pitch_client',
             output='screen'
             )
 
-    return launch.LaunchDescription([talker, listener])
+    return launch.LaunchDescription([server, client])
 

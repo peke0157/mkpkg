@@ -3,7 +3,7 @@
 <package format="3">
   <name>mypkg</name>
   <version>0.0.0</version>
-  <description>"ロボットシステム学授業"</description>
+  <description>"投球数計算・警告配信パッケージ"</description>
   <maintainer email="hiroto117@todo.com">Hiroto Miura</maintainer>
   <license>BSD-3-Clause</license>
   <exec_depend>rclpy</exec_depend>
