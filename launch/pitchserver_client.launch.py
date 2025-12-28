@@ -8,12 +8,12 @@ def generate_launch_description():
 
     server = launch_ros.actions.Node(
             package='mypkg',
-            executable='PitchServer',
+            executable='pitch_server',
             output='screen',
             )
     client = launch_ros.actions.Node(
             package='mypkg',
-            executable='PitchClient',
+            executable='pitch_client',
             output='screen'
             )
 

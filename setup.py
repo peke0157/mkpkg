@@ -26,8 +26,8 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'PitchServer = mypkg.pitchserver:main',
-            'PitchClient = mypkg.pitchclient:main',
+            'pitchServer = mypkg.pitch_server:main',
+            'pitchClient = mypkg.pitch_client:main',
             'pitch_checker = mypkg.pitch_checker:main',
         ],
     },
