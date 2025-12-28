@@ -1,21 +1,31 @@
 import launch
-import launch.actions
-import launch.substitutions
-import launch_ros.actions
-
+from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration
+from launch_ros.actions import Node
 
 def generate_launch_description():
+    
+    pitcher_arg = DeclareLaunchArgument(
+            'pitcher',
+            default_value='Collie',
+            description='Starting pitcher name'
+            )
 
-    server = launch_ros.actions.Node(
+    pitcher_config = LaunchConfiguration('pitcher')
+
+    server = Node(
             package='mypkg',
             executable='pitch_server',
             output='screen',
+            parameters=[{'start_pitcher': pitcher_config}]
+            
             )
-    client = launch_ros.actions.Node(
+    client = Node(
             package='mypkg',
             executable='pitch_client',
             output='screen'
             )
 
-    return launch.LaunchDescription([server, client])
+    return LaunchDescription([pitcher_arg, server, client])
 
