@@ -86,12 +86,13 @@ $ ros2 launch mypkg pitchserver_client.launch.py
 [pitch_client-2] [INFO] [1766975345.047600676] [pitch_client]: Server Response: Success=False, Message="Limited Exceed! count = (105)"
 ```
 投手を変更したいまたは投球数をリセットしたいときは下記のコマンドを打ちます。
-    - 投手を変更したいとき
+
+- 投手を変更したいとき
 ```
 ros2 param set /pitch_server start_pitcher "peke"
 ```
 
-    - 投球数をリセットしたいとき
+- 投球数をリセットしたいとき
 ```
 ros2 service call /reset_pitch std_srvs/srv/Trigger
 ```
