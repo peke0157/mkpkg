@@ -1,5 +1,5 @@
 # ROS2 野球　投球管理・警告システム
-![test](https://github.com/peke0157/mkpkg/actions/workflows/test.yml/badge.svg)
+![test](https://github.com/peke0157/mypkg/actions/workflows/test.yml/badge.svg)
 ![License](https://img.shields.io/github/license/peke0157/mypkg)
 
 本パッケージはROS2で動作する、投手の投球数管理パッケージです。

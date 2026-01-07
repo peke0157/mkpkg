@@ -30,9 +30,9 @@ class PitchServer(Node):
         self.create_subscription(String, '/pitch/select', self.select_picher_callback, 10)
         
         # --- サービス(カウント用) ---
-        self.srv = self.create_service(Trigger, '/count_pitch', self.check_pitch_callback)
+        self.srv_count = self.create_service(Trigger, '/count_pitch', self.check_pitch_callback)
         
-        self.srv = self.create_service(Trigger, '/reset_pitch', self.reset_callback)
+        self.srv_reset = self.create_service(Trigger, '/reset_pitch', self.reset_callback)
 
         self.get_logger().info('Pitch Server Ready')
         self.get_logger().info(f"Start Pitcher is set to: {self.current_pitcher}")
@@ -64,7 +64,7 @@ class PitchServer(Node):
     
     def select_picher_callback(self, msg):
         name = msg.data
-        self.current_picher = name
+        self.current_pitcher = name
         if name not in self.current_count:
             self.current_count[name] = 0
         
