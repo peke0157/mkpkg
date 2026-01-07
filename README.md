@@ -6,7 +6,7 @@
 複数の投手の投球数を個別に管理することができ、設定された投球数を超えると警告を発し、投手交代を促します。
 
 ## ノードの説明
-### pitch_server.py
+### pitch_server
 このシステムの中核となる管理ノードです。野球で言えば「公式記録員」の役割を果たします。
 - 役割
     - データの保持：現在登板している投手の名前と、各投手の投球数をメモリ上で管理します。
@@ -16,7 +16,7 @@
     - サービス（/count_pitch）が呼ばれると、現在選択されている投手の球数を+1します。
     - 球数が制限内であればSuccess: Trueを返しますが、100球を超えるとSuccess: Falseを返し、警告をクライアントに発します。
  
-### pitch_client.py
+### pitch_client
 このシステムは動作テスト用ノードです。野球で言えば投手そのものの役割を果たします。
 - 役割
     - 投球の実演：定期的（1秒ごと）にサーバーに対して「投げた」という合図を送ります。
@@ -26,6 +26,14 @@
     - 起動するとサーバーが立ち上がるのを待機します。
     - 接続後は、実行終了（Ctrl+C）するまで無限ループで/count_pitchサービスをリクエストし続けます。
     - サーバーから「制限超過（Limited Exceed）」のエラーが帰ってきてもテストのため、リクエストを送り続けます。警告を無くすには投手を変えるか、球数をリセットするか実行を終了してください。
+
+## トピックの説明
+| トピック名    | メッセージ型  | 内容                      |
+| '/pitch/warning    | std_msgs/msg/String   | 投球制限を超えたときにサーバーから発行される警告メッセージ|
+| '/pitch/select    | std_msgs/msg/String   | クライアントからサーバーへ、現在の投手名を通知・変更するために使われます|
+| サービス名    | サービス型    | 内容                      |
+| '/count_pitch     | std_srvs/Trigger      | 投球カウントを１つ増やします|
+| '/reset_pitch     | std_srvs/Trigger      | 現在の投手の投球カウントをリセットします|
 
 ## 実行方法
 - このリポジトリをターミナルで下記のようにクローンしてください。
@@ -49,7 +57,7 @@ $ ros2 launch mypkg pitchserver_client.launch.py
     （略）
 [pitch_server-1] [INFO] [1766975249.045014300] [pitch_server]: Pitch_Count: 10/100
 [pitch_client-2] [INFO] [1766975249.046009530] [pitch_client]: Server Response: Success=True, Message="OK"
-    （略）
+---
 ```
 上記のように投球数が1秒ごとに1球増えます。
 100球を超えると下記の通りに警告が出ます。
@@ -59,6 +67,7 @@ $ ros2 launch mypkg pitchserver_client.launch.py
 [pitch_client-2] [INFO] [1766975340.047072171] [pitch_client]: Server Response: Success=True, Message="OK"
 [pitch_server-1] [INFO] [1766975341.047293878] [pitch_server]: Pitch_Count: 101/100
 [pitch_client-2] [INFO] [1766975341.049963749] [pitch_client]: Server Response: Success=False, Message="Limited Exceed! count = (101)"
+---
 ```
 投手を変更したいまたは投球数をリセットしたいときは下記のコマンドを打ちます。
 
