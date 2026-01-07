@@ -29,11 +29,11 @@
 
 ## トピックの説明
 | トピック名    | メッセージ型  | 内容                      |
-| '/pitch/warning    | std_msgs/msg/String   | 投球制限を超えたときにサーバーから発行される警告メッセージ|
-| '/pitch/select    | std_msgs/msg/String   | クライアントからサーバーへ、現在の投手名を通知・変更するために使われます|
+| '/pitch/warning'    | 'std_msgs/msg/String'   | 投球制限を超えたときにサーバーから発行される警告メッセージ|
+| '/pitch/select'    | 'std_msgs/msg/String'   | クライアントからサーバーへ、現在の投手名を通知・変更するために使われます|
 | サービス名    | サービス型    | 内容                      |
-| '/count_pitch     | std_srvs/Trigger      | 投球カウントを１つ増やします|
-| '/reset_pitch     | std_srvs/Trigger      | 現在の投手の投球カウントをリセットします|
+| '/count_pitch'     | 'std_srvs/Trigger'      | 投球カウントを１つ増やします|
+| '/reset_pitch'     | 'std_srvs/Trigger'      | 現在の投手の投球カウントをリセットします|
 
 ## 実行方法
 - このリポジトリをターミナルで下記のようにクローンしてください。
