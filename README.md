@@ -33,12 +33,6 @@
 $ git clone https://github.com/peke0157/mypkg.git
 ```
 
-- ros2_wsのディレクトリに移動し、ビルドし、sourceを通して設定ファイルの内容を反映してください。
-```
-$ cd ~/ros2_ws
-$ colcon build
-$ source ~/.bashrc
-```
 - 投球数などをまとめて見たい場合はローンチファイルを実行します
 ```
 $ ros2 launch mypkg pitchserver_client.launch.py
@@ -52,38 +46,19 @@ $ ros2 launch mypkg pitchserver_client.launch.py
 [pitch_client-2] [INFO] [1766975240.070582204] [pitch_client]: Server Response: Success=True, Message="OK"
 [pitch_server-1] [INFO] [1766975241.045120372] [pitch_server]: Pitch_Count: 2/100
 [pitch_client-2] [INFO] [1766975241.046256821] [pitch_client]: Server Response: Success=True, Message="OK"
-[pitch_server-1] [INFO] [1766975242.046736823] [pitch_server]: Pitch_Count: 3/100
-[pitch_client-2] [INFO] [1766975242.049194256] [pitch_client]: Server Response: Success=True, Message="OK"
-[pitch_server-1] [INFO] [1766975243.045052369] [pitch_server]: Pitch_Count: 4/100
-[pitch_client-2] [INFO] [1766975243.046015261] [pitch_client]: Server Response: Success=True, Message="OK"
-[pitch_server-1] [INFO] [1766975244.045011990] [pitch_server]: Pitch_Count: 5/100
-[pitch_client-2] [INFO] [1766975244.046121197] [pitch_client]: Server Response: Success=True, Message="OK"
-[pitch_server-1] [INFO] [1766975245.044867214] [pitch_server]: Pitch_Count: 6/100
-[pitch_client-2] [INFO] [1766975245.045783787] [pitch_client]: Server Response: Success=True, Message="OK"
-[pitch_server-1] [INFO] [1766975246.045250131] [pitch_server]: Pitch_Count: 7/100
-[pitch_client-2] [INFO] [1766975246.046111908] [pitch_client]: Server Response: Success=True, Message="OK"
-[pitch_server-1] [INFO] [1766975247.047093506] [pitch_server]: Pitch_Count: 8/100
-[pitch_client-2] [INFO] [1766975247.049297479] [pitch_client]: Server Response: Success=True, Message="OK"
-[pitch_server-1] [INFO] [1766975248.045448100] [pitch_server]: Pitch_Count: 9/100
-[pitch_client-2] [INFO] [1766975248.046837508] [pitch_client]: Server Response: Success=True, Message="OK"
+    （略）
 [pitch_server-1] [INFO] [1766975249.045014300] [pitch_server]: Pitch_Count: 10/100
 [pitch_client-2] [INFO] [1766975249.046009530] [pitch_client]: Server Response: Success=True, Message="OK"
+    （略）
 ```
 上記のように投球数が1秒ごとに1球増えます。
 100球を超えると下記の通りに警告が出ます。
 ```
+    （略）
 [pitch_server-1] [INFO] [1766975340.045420619] [pitch_server]: Pitch_Count: 100/100
 [pitch_client-2] [INFO] [1766975340.047072171] [pitch_client]: Server Response: Success=True, Message="OK"
 [pitch_server-1] [INFO] [1766975341.047293878] [pitch_server]: Pitch_Count: 101/100
 [pitch_client-2] [INFO] [1766975341.049963749] [pitch_client]: Server Response: Success=False, Message="Limited Exceed! count = (101)"
-[pitch_server-1] [INFO] [1766975342.044995672] [pitch_server]: Pitch_Count: 102/100
-[pitch_client-2] [INFO] [1766975342.046227572] [pitch_client]: Server Response: Success=False, Message="Limited Exceed! count = (102)"
-[pitch_server-1] [INFO] [1766975343.044804709] [pitch_server]: Pitch_Count: 103/100
-[pitch_client-2] [INFO] [1766975343.045899831] [pitch_client]: Server Response: Success=False, Message="Limited Exceed! count = (103)"
-[pitch_server-1] [INFO] [1766975344.045187991] [pitch_server]: Pitch_Count: 104/100
-[pitch_client-2] [INFO] [1766975344.046523121] [pitch_client]: Server Response: Success=False, Message="Limited Exceed! count = (104)"
-[pitch_server-1] [INFO] [1766975345.045917778] [pitch_server]: Pitch_Count: 105/100
-[pitch_client-2] [INFO] [1766975345.047600676] [pitch_client]: Server Response: Success=False, Message="Limited Exceed! count = (105)"
 ```
 投手を変更したいまたは投球数をリセットしたいときは下記のコマンドを打ちます。
 
