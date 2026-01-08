@@ -30,11 +30,11 @@
 ## トピック・サービスの説明
 | トピック名    | メッセージ型  | 内容                      |
 |--------------------|----------------------|--------------------------|
-| '/pitch/warning'    | 'std_msgs/msg/String'   | 投球制限を超えたときにサーバーから発行される警告メッセージ|
-| '/pitch/select'    | 'std_msgs/msg/String'   | クライアントからサーバーへ、現在の投手名を通知・変更するために使われます|
+| /pitch/warning    | std_msgs/msg/String   | 投球制限を超えたときにサーバーから発行される警告メッセージ|
+| /pitch/count         | std_msgs/msg/Int32 | 現在の投球数を取得します                              |
 | サービス名    | サービス型    | 内容                      |
-| '/count_pitch'     | 'std_srvs/Trigger'      | 投球カウントを１つ増やします|
-| '/reset_pitch'     | 'std_srvs/Trigger'      | 現在の投手の投球カウントをリセットします|
+| /count_pitch     | std_srvs/Trigger      | 投球カウントを１つ増やします|
+| /reset_pitch     | std_srvs/Trigger      | 現在の投手の投球カウントをリセットします|
 
 ## 実行方法
 ### 実行方法１
@@ -67,7 +67,52 @@ $ ros2 launch mypkg pitchserver_client.launch.py
 ---
 ```
 
-### 実行方法２（端末を2つ動作させる）
+### 実行方法２（トピックで別々に見るとき）
+端末１と２でそれぞれ各ノードを起動してください。
+- 端末１
+```
+$ ros2 run mypkg pitch_server
+[INFO] [1767853538.400949912] [pitch_server]: Pitch Server Ready
+[INFO] [1767853538.401345678] [pitch_server]: Start Pitcher is set to: Collie
+```
+- 端末２
+```
+$ ros2 run mypkg pitch_client
+[INFO] [1767853630.005011701] [pitch_client]: Server Response: Success=True, Message="OK"
+[INFO] [1767853630.985669644] [pitch_client]: Server Response: Success=True, Message="OK"
+```
+
+３つ目の端末でトピックを直接確認します
+```
+$ ros2 topic echo /pitch/count
+data: 1
+---
+data: 2
+---
+data: 3
+---
+data: 4
+---
+data: 5
+---
+data: 6
+---
+```
+１００球を超えたときに警告文のトピックを確認します
+```
+$ ros2 topic echo /pitch/warning
+data: 'Warning: pitch_count_limit exceed! (101/100)'
+---
+data: 'Warning: pitch_count_limit exceed! (102/100)'
+---
+data: 'Warning: pitch_count_limit exceed! (103/100)'
+---
+data: 'Warning: pitch_count_limit exceed! (104/100)'
+---
+data: 'Warning: pitch_count_limit exceed! (105/100)'
+---
+```
+
 
 
 投手を変更したいまたは投球数をリセットしたいときは下記のコマンドを打ちます。

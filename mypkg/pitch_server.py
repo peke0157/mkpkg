@@ -40,6 +40,7 @@ class PitchServer(Node):
         self.get_logger().info(f"Start Pitcher is set to: {self.current_pitcher}")
 
 
+
     def check_pitch_callback(self, request, response):
         # 球数を増やす
         self.current_count[self.current_pitcher] += 1
@@ -67,6 +68,8 @@ class PitchServer(Node):
             response.message = f"OK"
 
         return response        
+
+    
 
     
     def select_picher_callback(self, msg):
