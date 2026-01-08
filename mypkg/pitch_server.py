@@ -25,7 +25,7 @@ class PitchServer(Node):
 
         # --- パブリッシャーの作成 ---
         self.pub = self.create_publisher(String, '/pitch/warning', 10)
-        self.pub_count = self.create_publisher(String, '/pitch/count', 10)
+        self.pub_count = self.create_publisher(Int32, '/pitch/count', 10)
 
 
         # --- サブスクライバの作成 ---
@@ -87,7 +87,8 @@ class PitchServer(Node):
 
                 self.get_logger().info(f'Pitcher changed to: {self.current_pitcher}')
                 
-                self.current_count[self.current_pitcher] = 0
+                if self.current_pitcher not in self.current_count:
+                    self.current_count[self.current_pitcher] = 0
         
         from rcl_interfaces.msg import SetParametersResult
         return SetParametersResult(successful=True)
