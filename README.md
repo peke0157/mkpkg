@@ -15,7 +15,7 @@
 - 動作
     - サービス（/count_pitch）が呼ばれると、現在選択されている投手の球数を+1します。
     - 球数が制限内であればSuccess: Trueを返しますが、100球を超えるとSuccess: Falseを返し、警告をクライアントに発します。
- 
+
 ### pitch_client
 このシステムは動作テスト用ノードです。野球で言えば投手そのものの役割を果たします。
 - 役割
@@ -37,11 +37,7 @@
 | '/reset_pitch'     | 'std_srvs/Trigger'      | 現在の投手の投球カウントをリセットします|
 
 ## 実行方法
-- このリポジトリをターミナルで下記のようにクローンしてください。
-```
-$ git clone https://github.com/peke0157/mypkg.git
-```
-
+### 実行方法１
 - 投球数などをまとめて見たい場合はローンチファイルを実行します
 ```
 $ ros2 launch mypkg pitchserver_client.launch.py
@@ -70,6 +66,10 @@ $ ros2 launch mypkg pitchserver_client.launch.py
 [pitch_client-2] [INFO] [1766975341.049963749] [pitch_client]: Server Response: Success=False, Message="Limited Exceed! count = (101)"
 ---
 ```
+
+### 実行方法２（端末を2つ動作させる）
+
+
 投手を変更したいまたは投球数をリセットしたいときは下記のコマンドを打ちます。
 
 - 投手を変更したいとき

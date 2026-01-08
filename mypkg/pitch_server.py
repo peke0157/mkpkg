@@ -4,7 +4,7 @@
 
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import String
+from std_msgs.msg import String, Int32
 from std_srvs.srv import Trigger
 
 class PitchServer(Node):
@@ -25,6 +25,8 @@ class PitchServer(Node):
 
         # --- パブリッシャーの作成 ---
         self.pub = self.create_publisher(String, '/pitch/warning', 10)
+        self.pub_count = self.create_publisher(String, '/pitch/count', 10)
+
 
         # --- サブスクライバの作成 ---
         self.create_subscription(String, '/pitch/select', self.select_picher_callback, 10)
@@ -41,6 +43,11 @@ class PitchServer(Node):
     def check_pitch_callback(self, request, response):
         # 球数を増やす
         self.current_count[self.current_pitcher] += 1
+        
+        # 現在の投球数をパブリッシュする
+        count_msg = Int32()
+        count_msg.data = self.current_count[self.current_pitcher]
+        self.pub_count.publish(count_msg)
 
         # 球数を取得
         limit = self.get_parameter('pitch_limit').get_parameter_value().integer_value
